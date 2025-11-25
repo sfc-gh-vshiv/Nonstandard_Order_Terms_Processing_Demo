@@ -1,358 +1,224 @@
-# Nonstandard Order Terms Processing Demo
+# Contract Generator for Document Processing Demos
 
-This project generates realistic contract documents with non-standard terms for demonstrating document processing capabilities to audit teams within finance organizations.
+A Streamlit web application that generates realistic contract documents with non-standard terms for demonstrating document processing capabilities to audit teams within finance organizations.
 
-## 📁 Project Structure
+## Overview
 
-```
-Nonstandard_Order_Terms_Processing_Demo/
-├── contracts/              # Generated contract PDFs
-│   ├── contract_001_software_license.pdf
-│   ├── contract_002_consulting_services.pdf
-│   ├── contract_003_cloud_services.pdf
-│   ├── contract_004_equipment_purchase.pdf
-│   └── contract_005_master_service_agreement.pdf
-├── scripts/               # Generation scripts
-│   ├── generate_contracts.py
-│   └── requirements.txt
-└── README.md             # This file
-```
+This tool generates verbose, realistic contract PDFs containing various **non-standard terms** that typically require audit team review. Each contract includes highlighted audit notes identifying problematic clauses for easy reference.
 
-## 🚀 Quick Start
+## Features
 
-### Installation
+### Contract Generation
+- **10 Contract Types**: Software License, Professional Services, Cloud Services, Hardware Purchase, Master Service Agreement, Consulting, Distribution, Maintenance, Joint Venture, and Strategic Alliance agreements
+- **Verbose & Realistic**: Contracts are comprehensive with multiple articles, subsections, and legal language inspired by the CUAD (Contract Understanding Atticus Dataset)
+- **Customizable Risk Factors**: 
+  - Uncapped variable fees
+  - Low liability caps
+  - Data sovereignty issues
+  - Asymmetric termination rights
+  - IP ownership problems
+  - Warranty gaps
+- **Document Complexity Control**: Generate minimal, standard, detailed, or comprehensive contracts
 
+### Amendment Support
+- Create amendments for any existing contract
+- Modify pricing, terms, services, liability, and termination clauses
+- Amendments automatically link to base contracts
+- Track amendment history
+
+### Batch Generation
+- Generate up to 10,000 contracts at once
+- Select specific contract types to include
+- Configure risk factors and document complexity for entire batch
+- Real-time progress tracking with performance metrics
+- Organized output in timestamped folders
+
+### Web Interface
+- **Interactive Streamlit App**: Modern, user-friendly interface with Material Icons
+- **PDF Viewer**: View contracts directly in the browser
+- **Contract Management**: Browse, view, amend, and delete contracts
+- **Folder Organization**: Contracts organized by date or custom timestamps
+- **Persistent Storage**: Contracts are saved to disk and reload on app restart
+
+## Installation
+
+### Prerequisites
+- Python 3.10 or higher
+- pip package manager
+
+### Setup
+
+1. Clone or download this repository
+
+2. Install dependencies:
 ```bash
-cd scripts
+cd app
 pip install -r requirements.txt
 ```
 
-### Generate Contracts
+The requirements include:
+- `reportlab` - PDF generation
+- `streamlit[pdf]>=1.51.0` - Web framework with PDF viewing support
+- `pandas` - Data handling
+
+## Usage
+
+### Starting the Application
 
 ```bash
-cd scripts
-python generate_contracts.py
+cd app
+streamlit run contract_app.py
 ```
 
-This will generate 5 PDF files in the `contracts/` directory.
+The application will open in your default web browser at `http://localhost:8501`
 
-## 📄 Generated Contracts
+### Generating Contracts
 
-The demo includes 5 contracts with various non-standard terms that require audit team review:
+#### Single Contract
+1. Select "New Contract" mode in the sidebar
+2. Choose contract type and vendor details
+3. Configure contract value, term, and effective date
+4. Select risk factors to include
+5. Set document complexity level
+6. Click "Generate Contract"
 
-### 1. Software License Agreement (contract_001)
-**Vendor:** TechVendor Solutions Inc.  
-**Value:** $850,000/year + variable usage fees  
-**Term:** 3 years
+#### Batch Generation
+1. Select "Batch Generation" mode in the sidebar
+2. Enter the number of contracts to generate
+3. Choose which contract types to include
+4. Configure risk factors and document complexity
+5. Optionally create a new timestamped folder
+6. Click "Generate Batch"
 
-**Key Issues:**
-- ⚠️ Accelerated payment terms (15 days vs. standard 30)
-- ⚠️ Uncapped variable usage fees
-- ⚠️ Above-market price escalation (8% vs. typical 3-5%)
-- ⚠️ Low liability cap (5.9% of annual contract value)
-- ⚠️ Asymmetric termination rights with 50% penalty
+#### Creating Amendments
+1. Browse to any contract in the list
+2. Click the "Amend" button
+3. Configure amendment details:
+   - Amendment number and date
+   - Pricing modifications
+   - Term extensions
+   - New services
+   - Liability and termination changes
+4. Click "Generate Amendment"
+5. The amendment PDF is automatically displayed
 
-### 2. Professional Services Agreement (contract_002)
-**Vendor:** Apex Consulting Group LLC  
-**Value:** $1.5M over 18 months  
-**Term:** 18 months
+### Managing Contracts
 
-**Key Issues:**
-- ⚠️ Above-market hourly rates (15-20% premium)
-- ⚠️ No caps on hours or expenses
-- ⚠️ 15% success fee with vague criteria
-- ⚠️ Consultant retains all IP rights
-- ⚠️ Accelerated payment terms (10 days)
-- ⚠️ High late fees (24% APR)
+- **View**: Click the "View" button to display the PDF in the browser
+- **Amend**: Click the "Amend" button to create an amendment
+- **Delete**: Click the "Delete" button to remove a contract (with confirmation)
+- **Delete Folder**: Click the delete icon next to a folder name to remove all contracts in that folder
+- **Refresh**: Click "Refresh List" to reload contracts from disk
+- **Cleanup**: Use the "Cleanup Options" in the sidebar to delete all contracts
 
-### 3. Cloud Services Agreement (contract_003)
-**Vendor:** CloudScale Technologies Inc.  
-**Value:** $540,000/year + overages  
-**Term:** 5 years
+## Contract Types & Common Issues
 
-**Key Issues:**
-- 🔴 Below-standard SLA (99.5% vs. 99.9% for financial services)
-- 🔴 No guaranteed data location (sovereignty issues)
-- ⚠️ Limited service credits (max 15%)
-- ⚠️ Broad data access rights for provider
-- ⚠️ Uncapped overage charges
-- ⚠️ 5-year initial term with 12-month renewal notice
+Each contract type includes realistic problematic terms:
 
-### 4. Hardware Purchase Agreement (contract_004)
-**Vendor:** DataCenter Equipment Solutions LLC  
-**Value:** $2.85M purchase + $627K/year maintenance  
+### Software License Agreement
+- Accelerated payment terms (15 days vs. standard 30)
+- Uncapped variable usage fees
+- Above-market price escalation (8% annually)
+- Low liability caps (5-6% of contract value)
+- Asymmetric termination with 50% penalty
+- 180-day auto-renewal notice period
 
-**Key Issues:**
-- 🔴 Short 90-day warranty on $2.85M purchase
-- ⚠️ Mandatory maintenance at 22% of purchase price
-- ⚠️ No 24x7 support for critical systems
-- ⚠️ Forced firmware upgrades
-- ⚠️ Liability capped at $100K for $2.85M purchase
+### Professional Services Agreement
+- Above-market hourly rates (15-20% premium)
+- No caps on hours or expenses
+- Consultant retains all IP rights
+- Aggressive payment terms (10 days)
+- High late fees (24% APR)
+- 30% early termination penalty
 
-### 5. Master Service Agreement (contract_005)
-**Vendor:** SecureData Processing Inc.  
-**Term:** 3 years with auto-renewal
+### Cloud Services Agreement
+- Below-standard SLA (99.5% vs. 99.9%)
+- Uncapped usage-based pricing
+- No guaranteed data location
+- Broad provider data access rights
+- Short data retention periods (90 days)
+- Inadequate liability caps
 
-**Key Issues:**
-- 🔴 Extremely broad client indemnification
-- 🔴 30-day data breach notification (vs. 72-hour regulatory requirement)
-- ⚠️ Asymmetric insurance requirements
-- ⚠️ Mandatory arbitration with class action waiver
-- ⚠️ Liability cap of $25K or one month of fees
+### Other Agreement Types
+- Hardware Purchase: Short warranties, mandatory expensive maintenance
+- Master Service Agreement: Broad indemnification, asymmetric terms
+- Distribution Agreement: Restrictive territory clauses, minimum purchase requirements
+- Maintenance Agreement: Limited support hours, expensive on-call rates
+- Joint Venture: Unequal profit sharing, exit restrictions
+- Strategic Alliance: Non-compete clauses, IP sharing issues
 
-## 📊 Financial Impact Summary
+## Output Structure
 
-| Contract | Annual Cost | Risk Exposure | Critical Issues |
-|----------|-------------|---------------|-----------------|
-| 001 - Software | $850,000+ | Unlimited (uncapped fees) | 3 |
-| 002 - Consulting | $1,000,000+ | $1.5M+ | 2 |
-| 003 - Cloud | $540,000+ | Unlimited (uncapped fees) | 5 |
-| 004 - Equipment | $627,000/yr | $6.65M over 5 years | 4 |
-| 005 - MSA | Variable | Unlimited liability | 6 |
+Contracts are organized in the `contracts/` folder:
 
-**Total Annual Base Spend:** $3,017,000+  
-**5-Year Commitment:** $15,085,000+  
-**Liability Gap:** $14,500,000  
-**Non-Standard Terms Identified:** 45+
-
-## 🎯 Use Cases
-
-### 1. Document Processing Demos
-Showcase AI/ML capabilities for contract analysis:
-- Automated risk identification
-- Clause extraction and classification
-- Compliance checking
-- Financial impact analysis
-
-### 2. Audit Team Training
-Help teams identify problematic contract terms:
-- What to look for in contracts
-- Why terms matter
-- How to escalate issues
-- Risk assessment practices
-
-### 3. System Testing & Validation
-Test document processing systems:
-- Extraction accuracy (45+ known issues)
-- Risk scoring algorithms
-- Benchmark against known results
-- Performance metrics
-
-### 4. Customer Workshops
-Demonstrate value to prospects:
-- Process demo contracts first
-- Compare to customer's actual contracts
-- Build business case for automation
-- Show ROI calculations
-
-## 💡 Key Features
-
-- **Realistic Formatting** - Professional appearance with proper headers, sections, and signatures
-- **Highlighted Audit Notes** - Non-standard terms marked in red for easy identification
-- **Diverse Contract Types** - Software, services, cloud, hardware, and master agreements
-- **Actual Problematic Clauses** - Based on real-world contract issues
-- **Quantified Risks** - Dollar amounts and percentages for all issues
-
-## 🎤 Demo Script (20-minute presentation)
-
-### Part 1: The Challenge (2 min)
-- Finance teams manage hundreds/thousands of contracts
-- Manual review is slow (2-4 hours per contract) and inconsistent
-- Non-standard terms often go unnoticed until problems arise
-
-### Part 2: Automated Ingestion (3 min)
-- Upload all 5 PDFs
-- Extract metadata (parties, dates, values, terms)
-- Show processing speed
-
-### Part 3: Risk Identification (5 min)
-Demonstrate automatic flagging of:
-- **Critical Risks:** Data sovereignty violations, inadequate liability caps, security breach terms
-- **High Risks:** Uncapped fees, above-market pricing, IP ownership issues
-- **Medium Risks:** Long lock-in periods, limited audit rights, operational constraints
-
-### Part 4: Financial Analysis (3 min)
-- Total cost analysis: $3M+ annual, $15M+ over 5 years
-- Hidden/variable costs: Unlimited exposure in 3 contracts
-- Liability gap: $14.5M uncovered exposure
-
-### Part 5: Compliance Dashboard (3 min)
-- Compliance scorecard: 45/100 (POOR)
-- Risk heat map by contract and category
-- Regulatory violations identified
-
-### Part 6: Actionable Insights (3 min)
-- Immediate actions (this week)
-- Short-term actions (this month)
-- Long-term recommendations (this quarter)
-
-### Part 7: ROI Calculation (2 min)
-- **Time Savings:** 15 hours → 25 minutes (97% reduction)
-- **Cost Savings:** $87,450 annually (for 200 contracts)
-- **Risk Mitigation:** $15M+ in identified exposure
-
-## 📈 Success Metrics
-
-### Efficiency Metrics
-- Contract review time: 3 hours → 5 minutes (97% reduction)
-- Processing capacity: 5 contracts/week → 100 contracts/week
-- Time to insights: 2 weeks → 1 day
-
-### Quality Metrics
-- Critical terms identified: 45 issues across 5 contracts
-- Compliance violations caught: 8 regulatory risks
-- Cost savings opportunities: $2M+ identified
-
-### Business Impact
-- Risk exposure quantified: $15M+ in first batch
-- Renewals tracked: 100% visibility
-- Approval workflow: Automated routing and escalation
-
-## 🎓 Audit Team Focus Areas
-
-Each contract highlights issues relevant to finance audit teams:
-
-- **Financial Risk:** Uncapped fees, escalation clauses, termination penalties
-- **Operational Risk:** SLA gaps, support limitations, forced upgrades
-- **Legal Risk:** Indemnification imbalances, liability caps, arbitration clauses
-- **Compliance Risk:** Data sovereignty, breach notification, insurance requirements
-- **Strategic Risk:** Long lock-in periods, IP ownership, vendor dependencies
-
-## 🔧 Customization
-
-To create additional contracts or modify existing ones, edit `scripts/generate_contracts.py`. Each contract is generated by a separate function:
-
-- `create_contract_1()` - Software license
-- `create_contract_2()` - Consulting services
-- `create_contract_3()` - Cloud services
-- `create_contract_4()` - Equipment purchase
-- `create_contract_5()` - Master service agreement
-
-### Adding New Contracts
-
-```python
-def create_contract_6():
-    """Your new contract type"""
-    filename = "../contracts/contract_006_your_type.pdf"
-    doc = SimpleDocTemplate(filename, pagesize=letter,
-                            rightMargin=72, leftMargin=72,
-                            topMargin=72, bottomMargin=18)
-    
-    Story = []
-    styles = getSampleStyleSheet()
-    
-    # Add your content here
-    
-    doc.build(Story)
-    print(f"✓ Generated {filename}")
+```
+contracts/
+├── 2025-11-25/              # Date-based folders
+│   ├── contract_sla_*.pdf
+│   ├── contract_psa_*.pdf
+│   └── ...
+├── 20251125_143022/         # Timestamped folders (batch generation)
+│   ├── contract_*.pdf
+│   └── amendment_*.pdf
+└── ...
 ```
 
-## 📋 Detailed Risk Analysis
+## Use Cases
 
-### Critical Risks (Immediate Attention Required)
+- **Document Processing Demos**: Showcase AI/ML capabilities for contract analysis
+- **Audit Team Training**: Help teams identify problematic contract terms
+- **Procurement Process Improvement**: Demonstrate need for contract review automation
+- **Risk Assessment Tools**: Test systems for identifying financial and legal risks
+- **Compliance Checking**: Validate automated compliance review systems
+- **LLM Training**: Generate training data for contract understanding models
 
-1. **Data Sovereignty Violations** (Contract 003)
-   - No guaranteed data location
-   - Potential GDPR/regulatory compliance violations
-   - **Action:** Engage legal counsel immediately
+## Audit Focus Areas
 
-2. **Inadequate Liability Protection** (Contracts 001, 004, 005)
-   - Liability caps as low as 3.5% of contract value
-   - No consequential damage coverage
-   - **Gap:** $14.5M uncovered exposure
+Contracts highlight issues relevant to finance audit teams:
 
-3. **Security Breach Liability** (Contract 005)
-   - Client indemnifies vendor for vendor's security failures
-   - 30-day breach notification exceeds regulatory requirements
-   - **Risk:** Regulatory fines, unlimited liability
+- **Financial Risk**: Uncapped fees, escalation clauses, termination penalties
+- **Operational Risk**: SLA gaps, support limitations, forced upgrades
+- **Legal Risk**: Indemnification imbalances, liability caps, arbitration clauses
+- **Compliance Risk**: Data sovereignty, breach notification, insurance requirements
+- **Strategic Risk**: Long lock-in periods, IP ownership, vendor dependencies
 
-4. **Warranty Gaps** (Contract 004)
-   - 90-day warranty on $2.85M equipment purchase
-   - Extensive exclusions may void warranty
-   - **Exposure:** $2.85M at risk
+## Technical Details
 
-### High Risks (Requires Management Approval)
+### Architecture
+- **Frontend**: Streamlit web framework with Material Design icons
+- **PDF Generation**: ReportLab library for professional document formatting
+- **Contract Engine**: Modular generator supporting multiple contract types
+- **Storage**: File-based with automatic folder organization
+- **Session Management**: Streamlit session state for UI interactions
 
-1. **Uncapped Financial Exposure** (Contracts 001, 002, 003)
-   - Variable fees without maximum limits
-   - No hour caps on consulting services
-   - Unlimited overage charges
-   - **Potential Impact:** 2-3x budget overruns
+### File Naming Convention
+- Contracts: `contract_{type}_{timestamp}_{id}.pdf`
+- Amendments: `amendment_{contract_id}_no{number}_{timestamp}.pdf`
 
-2. **Above-Market Pricing** (Contracts 001, 002, 004)
-   - 8% annual escalation vs. 3-5% market rate
-   - 15-20% premium on consulting rates
-   - 22% maintenance vs. 15-18% market rate
-   - **Annual Impact:** $500K+ excess costs
+### Contract Abbreviations
+- `sla` - Software License Agreement
+- `psa` - Professional Services Agreement
+- `csa` - Cloud Services Agreement
+- `hpa` - Hardware Purchase Agreement
+- `msa` - Master Service Agreement
+- `ca` - Consulting Agreement
+- `da` - Distribution Agreement
+- `ma` - Maintenance Agreement
+- `jva` - Joint Venture Agreement
+- `saa` - Strategic Alliance Agreement
 
-3. **Intellectual Property Issues** (Contract 002)
-   - Client doesn't own work product
-   - Consultant can use insights for competitors
-   - **Value at Risk:** $1.5M+ in deliverables
-
-### Recommended Actions
-
-**Immediate (This Week)**
-1. Contract 003: Engage legal counsel regarding data sovereignty
-2. Contract 005: Renegotiate indemnification and breach notification
-3. Contract 004: Negotiate warranty extension before delivery
-
-**Short-Term (This Month)**
-1. All Contracts: Request liability cap increases to minimum 100% of annual value
-2. Contracts 001, 003: Negotiate caps on variable fees
-3. Contract 002: Clarify IP ownership and success fee criteria
-
-**Long-Term (This Quarter)**
-1. Implement contract approval workflow
-2. Develop contract playbook with acceptable terms
-3. Set up renewal tracking system
-4. Build automated contract analysis capabilities
-
-## ❓ FAQ
-
-**Q: How realistic are these contracts?**  
-A: Based on actual problematic terms found in enterprise agreements. Simplified for demo purposes but legally accurate.
-
-**Q: Can I modify the contracts?**  
-A: Yes! Edit `scripts/generate_contracts.py` and regenerate. All content is customizable.
-
-**Q: What if my system doesn't catch all issues?**  
-A: Use this README as a checklist. Focus on critical issues first (20 identified). Iterate and improve your extraction logic.
-
-**Q: How do I handle technical issues during demo?**  
-A: Have backup slides ready. Print contracts as fallback. Focus on manual walkthrough of findings.
-
-## 📝 Notes
+## Notes
 
 - All companies, names, and details are fictional
 - Contracts are for demonstration purposes only
 - Not intended for actual legal use
-- Audit notes are embedded in red text within the documents
+- Audit notes are highlighted in red within the documents
+- CUAD dataset (`CUAD_v1/`) is used for inspiration but not included in git
 
-## 🎬 Getting Started Checklist
+## License
 
-For **Presenters:**
-1. ✅ Review the contract PDFs (5 min)
-2. ✅ Study this README (10 min)
-3. ✅ Practice the demo flow (15 min)
-4. ✅ Customize for your audience (10 min)
+This project is for demonstration purposes. All generated contracts are fictional and should not be used for actual legal agreements.
 
-For **Technical Teams:**
-1. ✅ Upload 5 PDFs to your document processing system
-2. ✅ Verify extraction of 45+ non-standard terms
-3. ✅ Compare results against this README
-4. ✅ Calculate accuracy and performance metrics
+## Support
 
-For **Developers:**
-1. ✅ Install dependencies: `pip install -r scripts/requirements.txt`
-2. ✅ Generate contracts: `python scripts/generate_contracts.py`
-3. ✅ Customize: Edit functions in `generate_contracts.py`
-4. ✅ Regenerate with your changes
-
----
-
-**Generated:** November 24, 2024  
-**Purpose:** Document processing demo for finance audit teams  
-**Status:** ✅ Ready to use
-
-For questions or issues, please refer to the contract PDFs in the `contracts/` directory and the generation script in `scripts/generate_contracts.py`.
+For issues or questions, contact: vinod.s@snowflake.com

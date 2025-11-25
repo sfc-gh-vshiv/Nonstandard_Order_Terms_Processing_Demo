@@ -15,7 +15,7 @@ import random
 
 def create_contract_1():
     """Software License Agreement with unusual payment terms and liability caps"""
-    filename = "../contracts/contract_001_software_license.pdf"
+    filename = "contract_001_software_license.pdf"
     doc = SimpleDocTemplate(filename, pagesize=letter,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
@@ -148,7 +148,7 @@ def create_contract_1():
 
 def create_contract_2():
     """Consulting Services Agreement with unusual IP and payment terms"""
-    filename = "../contracts/contract_002_consulting_services.pdf"
+    filename = "contract_002_consulting_services.pdf"
     doc = SimpleDocTemplate(filename, pagesize=letter,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
@@ -288,7 +288,7 @@ def create_contract_2():
 
 def create_contract_3():
     """Cloud Services Agreement with data sovereignty and SLA issues"""
-    filename = "../contracts/contract_003_cloud_services.pdf"
+    filename = "contract_003_cloud_services.pdf"
     doc = SimpleDocTemplate(filename, pagesize=letter,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
@@ -451,7 +451,7 @@ def create_contract_3():
 
 def create_contract_4():
     """Vendor Agreement with unusual warranty and support terms"""
-    filename = "../contracts/contract_004_equipment_purchase.pdf"
+    filename = "contract_004_equipment_purchase.pdf"
     doc = SimpleDocTemplate(filename, pagesize=letter,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
@@ -620,7 +620,7 @@ def create_contract_4():
 
 def create_contract_5():
     """Master Service Agreement with problematic indemnification and insurance"""
-    filename = "../contracts/contract_005_master_service_agreement.pdf"
+    filename = "contract_005_master_service_agreement.pdf"
     doc = SimpleDocTemplate(filename, pagesize=letter,
                             rightMargin=72, leftMargin=72,
                             topMargin=72, bottomMargin=18)
